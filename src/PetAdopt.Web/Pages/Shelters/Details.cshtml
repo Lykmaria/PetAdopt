@@ -1,0 +1,64 @@
+﻿@page "{id:int}"
+@model PetAdopt.Web.Pages.Shelters.DetailsModel
+@{
+    ViewData["Title"] = "Shelter Details";
+}
+
+<h1>@Model.Shelter.Name</h1>
+<p class="text-muted">@Model.Shelter.Description</p>
+
+<div class="mb-3">
+    <strong>Average rating:</strong>
+    @Model.AverageRating / 5
+</div>
+
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-success">@TempData["Msg"]</div>
+}
+
+<h3 class="mt-4">Reviews</h3>
+@if (Model.Reviews.Count == 0)
+{
+    <p>No reviews yet.</p>
+}
+else
+{
+    <ul class="list-group mb-4">
+        @foreach (var r in Model.Reviews.OrderByDescending(x => x.CreatedAtUtc))
+        {
+            <li class="list-group-item">
+                <strong>@r.Rating/5</strong> — @r.Comment
+                <div class="text-muted small">@r.CreatedAtUtc.ToLocalTime()</div>
+            </li>
+        }
+    </ul>
+}
+
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <h4>Add a review</h4>
+    <form method="post" asp-page-handler="AddReview" class="mb-5">
+        <div class="mb-3">
+            <label asp-for="Rating" class="form-label">Rating (1–5)</label>
+            <input asp-for="Rating" class="form-control" type="number" min="1" max="5" />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Comment" class="form-label">Comment</label>
+            <textarea asp-for="Comment" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+}
+else
+{
+    <p>
+        <a asp-area="Identity" asp-page="/Account/Login">Log in</a> to add a review.
+    </p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

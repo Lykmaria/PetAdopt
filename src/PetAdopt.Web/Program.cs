@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using PetAdopt.Data;
 using PetAdopt.Data.Identity;
 using PetAdopt.Web.Infrastructure;
+using PetAdopt.Application.Services;
+using PetAdopt.Application.Repositories;
+using PetAdopt.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +25,9 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
 });
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped<IAdoptionService, AdoptionService>();
 
 var app = builder.Build();
 

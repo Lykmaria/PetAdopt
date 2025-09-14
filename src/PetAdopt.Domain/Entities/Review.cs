@@ -1,18 +1,25 @@
-﻿namespace PetAdopt.Domain.Entities
+﻿namespace PetAdopt.Domain.Entities;
+
+/// <summary>User review for a shelter.</summary>
+public class Review
 {
-    /// <summary>
-    /// Review and rating left for a shelter.
-    /// </summary>
-    public class Review
-    {
-        public int Id { get; set; }
-        public int ShelterId { get; set; }
-        public Shelter? Shelter { get; set; }
+    public int Id { get; set; }
 
-        public string UserId { get; set; } = string.Empty;
-        public User? User { get; set; }
+    /// <summary>Reviewed shelter FK.</summary>
+    public int ShelterId { get; set; }
 
-        public int Rating { get; set; } // 1–5
-        public string Comment { get; set; } = string.Empty;
-    }
+    /// <summary>Reviewed shelter navigation.</summary>
+    public Shelter Shelter { get; set; } = default!;
+
+    /// <summary>Author (ASP.NET Identity) user id.</summary>
+    public string UserId { get; set; } = default!;
+
+    /// <summary>Rating 1..5 (enforced in validation/DB config).</summary>
+    public int Rating { get; set; }
+
+    /// <summary>Optional textual comment.</summary>
+    public string? Comment { get; set; }
+
+    /// <summary>UTC creation timestamp.</summary>
+    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 }

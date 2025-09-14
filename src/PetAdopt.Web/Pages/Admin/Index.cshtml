@@ -1,8 +1,33 @@
 ﻿@page
-@model PetAdopt.Web.Pages.Admin.IndexModel
+@model PetAdopt.Web.Pages.Admin.Applications.IndexModel
 @{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = "Applications";
 }
-<h1>Admin Dashboard</h1>
-<p>Welcome, Admin.</p>
 
+<h1>Applications</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Submitted</th>
+            <th>Pet</th>
+            <th>Applicant</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model.Items)
+        {
+            <tr>
+                <td>@r.CreatedAtUtc.ToLocalTime()</td>
+                <td>@r.PetName</td>
+                <td>@r.ApplicantUserId</td>
+                <td>@r.Status</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-page="Review" asp-route-id="@r.Id">Review</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

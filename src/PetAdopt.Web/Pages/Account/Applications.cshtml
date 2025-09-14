@@ -1,0 +1,27 @@
+﻿@page
+@model PetAdopt.Web.Pages.Account.ApplicationsModel
+@{
+    ViewData["Title"] = "My Applications";
+}
+
+<h1>My Applications</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Submitted</th>
+            <th>Pet</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model.Items)
+        {
+            <tr>
+                <td>@r.CreatedAtUtc.ToLocalTime()</td>
+                <td>@r.PetName</td>
+                <td>@r.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

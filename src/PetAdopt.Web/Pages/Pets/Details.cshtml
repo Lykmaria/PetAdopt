@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@model PetAdopt.Web.Pages.Pets.DetailsModel
+@{
+    ViewData["Title"] = "Pet Details";
+}
+<h1>@Model.Pet.Name</h1>
+<p><strong>Species:</strong> @Model.Pet.Species</p>
+<p><strong>Status:</strong> @Model.Pet.Status</p>
+
+<form method="post" asp-page-handler="Apply">
+    <div class="mb-3">
+        <label asp-for="ApplicantNote" class="form-label"></label>
+        <textarea asp-for="ApplicantNote" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Apply for Adoption</button>
+</form>
+
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["Msg"]</div>
+}

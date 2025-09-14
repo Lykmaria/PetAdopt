@@ -1,0 +1,16 @@
+﻿@page
+@model PetAdopt.Web.Pages.Shelters.IndexModel
+@{
+    ViewData["Title"] = "Shelters";
+}
+<h1>Shelters</h1>
+
+<ul class="list-group">
+    @foreach (var s in Model.Shelters)
+    {
+        <li class="list-group-item">
+            <strong>@s.Name</strong> - @s.Description
+            <a class="btn btn-sm btn-primary float-end" asp-page="Details" asp-route-id="@s.Id">View</a>
+        </li>
+    }
+</ul>

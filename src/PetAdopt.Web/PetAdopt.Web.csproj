@@ -9,8 +9,6 @@
   <ItemGroup>
     <Folder Include="Pages\Account\" />
     <Folder Include="Pages\Identity\" />
-    <Folder Include="Pages\Pets\" />
-    <Folder Include="Pages\Shelters\" />
   </ItemGroup>
 
   <ItemGroup>

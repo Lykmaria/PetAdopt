@@ -1,38 +1,39 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home";
+	ViewData["Title"] = "Home";
 }
 
 <div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Find your new best friend 🐶🐱</h1>
-        <p class="col-md-8 fs-5">Browse pets from local shelters, apply to adopt, and track your applications.</p>
-    </div>
+	<div class="text-center my-0">
+		<img src="~/images/cat_dog.jpg" class="img-fluid rounded shadow" alt="Adoptable pets" width="700px">
+		<h1 class="mt-4">Welcome to PetAdopt 🐾</h1>
+		<p class="lead">Find your new best friend today!</p>
+	</div>
 </div>
 
 <div class="row g-4">
-    <div class="col-md-6">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Pets</h5>
-                <p class="card-text">See who’s available right now and start an adoption application.</p>
-                <a asp-page="/Pets/Index" class="btn btn-primary">Explore Pets</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Shelters</h5>
-                <p class="card-text">Browse shelters and read community reviews.</p>
-                <a asp-page="/Shelters/Index" class="btn btn-primary">View Shelters</a>
-            </div>
-        </div>
-    </div>
+	<div class="col-md-6">
+		<div class="card h-100">
+			<div class="card-body">
+				<h5 class="card-title">Pets</h5>
+				<p class="card-text">See who’s available right now and start an adoption application.</p>
+				<a asp-page="/Pets/Index" class="btn btn-primary">Explore Pets</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card h-100">
+			<div class="card-body">
+				<h5 class="card-title">Shelters</h5>
+				<p class="card-text">Browse shelters and read community reviews.</p>
+				<a asp-page="/Shelters/Index" class="btn btn-primary">View Shelters</a>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div class="mt-4">
-    <a asp-area="Identity" asp-page="/Account/Login" class="me-3">Login</a>
-    <a asp-area="Identity" asp-page="/Account/Register">Register</a>
-</div>
+@* <div class="mt-4">
+	<a asp-area="Identity" asp-page="/Account/Login" class="me-3">Login</a>
+	<a asp-area="Identity" asp-page="/Account/Register">Register</a>
+</div> *@

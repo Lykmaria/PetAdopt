@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PetAdopt.Data.Identity;
 using PetAdopt.Domain.Entities;
-using PetAdopt.Identity;
 
 namespace PetAdopt.Data;
 
+/// <summary>EF Core DbContext for PetAdopt.</summary>
 public class PetAdoptDbContext : IdentityDbContext<ApplicationUser>
 {
     public PetAdoptDbContext(DbContextOptions<PetAdoptDbContext> options) : base(options) { }
@@ -28,6 +29,8 @@ public class PetAdoptDbContext : IdentityDbContext<ApplicationUser>
         b.Entity<Pet>(e =>
         {
             e.Property(x => x.Name).HasMaxLength(100).IsRequired();
+            e.Property(x => x.Status).HasConversion<int>();
+            e.Property(x => x.Species).HasConversion<int>();
         });
 
         b.Entity<AdoptionApplication>(e =>
